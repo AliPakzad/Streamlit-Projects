@@ -3,12 +3,18 @@ import pandas as pd
 import joblib
 import os
 
+# Find the directory where app.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Load trained model and Target Encoding artifacts
-model = joblib.load("xgboost_target_encoding.pkl")
-address_te_mapping = joblib.load("address_te_mapping.pkl")
-global_mean = joblib.load("global_mean.pkl")
+# Build the full path to the pkl files next to app.py
+model_path = os.path.join(BASE_DIR, "xgboost_target_encoding.pkl")
+global_mean_path = os.path.join(BASE_DIR, "global_mean.pkl")
+address_te_path = os.path.join(BASE_DIR, "address_te_mapping.pkl")
 
+# Load the files
+model = joblib.load(model_path)
+global_mean = joblib.load(global_mean_path)
+address_te_mapping = joblib.load(address_te_path)
 
 # Display a header banner from a URL or local file path
 banner_image = "header.png"
