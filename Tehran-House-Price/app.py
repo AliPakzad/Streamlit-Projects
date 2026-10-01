@@ -17,7 +17,8 @@ global_mean = joblib.load(global_mean_path)
 address_te_mapping = joblib.load(address_te_path)
 
 # Display a header banner from a URL or local file path
-banner_image = "header.png"
+# Build the full path to the header image next to app.py
+banner_image = os.path.join(BASE_DIR, "header.png")
 
 if os.path.exists(banner_image):
     st.image(
