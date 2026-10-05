@@ -195,14 +195,14 @@ st.markdown("""
 # Load Model
 # ============================================================
 
+# Find the directory where app.py is located
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @st.cache_resource
 def load_pipeline():
-    model_path = os.path.join(
-        os.path.dirname(__file__),
-        "churn_rf_smote_pipeline.pkl"
-    )
+    model_path = os.path.join(BASE_DIR, "churn_rf_smote_pipeline.pkl")
+    
     return joblib.load(model_path)
-
 
 pipeline = load_pipeline()
 
