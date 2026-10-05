@@ -197,7 +197,11 @@ st.markdown("""
 
 @st.cache_resource
 def load_pipeline():
-    return joblib.load("churn_rf_smote_pipeline.pkl")
+    model_path = os.path.join(
+        os.path.dirname(__file__),
+        "churn_rf_smote_pipeline.pkl"
+    )
+    return joblib.load(model_path)
 
 
 pipeline = load_pipeline()
