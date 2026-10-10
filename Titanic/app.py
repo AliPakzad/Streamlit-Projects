@@ -4,8 +4,11 @@ from utils import PrepProcesor, columns
 import numpy as np
 import pandas as pd
 import joblib
+import os
 
-model = joblib.load('xgbpipe.joblib')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model = joblib.load(os.path.join(BASE_DIR, 'xgbpipe.joblib'))
+
 st.title('Will you survive if you were among Titanic passengers or not :ship:')
 # PassengerId,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
 passengerid = st.text_input("Input Passenger ID", '8585') 
