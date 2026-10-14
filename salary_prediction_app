@@ -1,0 +1,41 @@
+# 💰 Developer Salary Predictor
+
+A machine learning web application that predicts developer salaries based on the [Stack Overflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/) (73,268 responses).
+
+Built with **CatBoost** and deployed via **Streamlit**.
+
+---
+
+## 🎯 Overview
+
+This project walks through a complete end-to-end machine learning pipeline — from raw survey data to an interactive web app:
+
+- **Data Cleaning** — handling missing values, outliers, and multi-select fields
+- **Exploratory Data Analysis** — 12+ visualizations uncovering salary drivers
+- **Feature Engineering** — ordinal encoding, log transforms, and categorical grouping
+- **Model Comparison** — PyCaret benchmark across 25+ algorithms
+- **Hyperparameter Tuning** — GridSearchCV with overfitting diagnostics
+- **Interpretability** — SHAP analysis for global and local explanations
+- **Deployment** — interactive Streamlit app for real-time predictions
+
+---
+
+## 📊 Model Performance
+
+| Metric | Value |
+|---|---|
+| Model | CatBoost Regressor |
+| Training samples | ~32,000 cleaned observations |
+| Salary range | 10K – 300K USD |
+| Test R² | **0.571** |
+| Test MAE | **~$26,000** |
+| Generalization gap | 0.005 (no overfitting) |
+
+---
+
+## 🚀 Run Locally
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/salary-prediction.git
+cd salary-prediction
