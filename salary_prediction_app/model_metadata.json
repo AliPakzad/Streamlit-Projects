@@ -1,0 +1,100 @@
+{
+  "age_categories": [
+    "18-24 years old",
+    "25-34 years old",
+    "35-44 years old",
+    "45-54 years old",
+    "55-64 years old",
+    "65 years or older"
+  ],
+  "orgsize_categories": [
+    "Just me - I am a freelancer, sole proprietor, etc.",
+    "2 to 9 employees",
+    "10 to 19 employees",
+    "20 to 99 employees",
+    "100 to 499 employees",
+    "500 to 999 employees",
+    "1,000 to 4,999 employees",
+    "5,000 to 9,999 employees",
+    "10,000 or more employees"
+  ],
+  "country_categories": [
+    "Argentina",
+    "Australia",
+    "Austria",
+    "Belgium",
+    "Brazil",
+    "Canada",
+    "Czech Republic",
+    "Denmark",
+    "Finland",
+    "France",
+    "Germany",
+    "Greece",
+    "India",
+    "Iran, Islamic Republic of...",
+    "Israel",
+    "Italy",
+    "Mexico",
+    "Netherlands",
+    "New Zealand",
+    "Norway",
+    "Other",
+    "Pakistan",
+    "Poland",
+    "Portugal",
+    "Romania",
+    "Russian Federation",
+    "South Africa",
+    "Spain",
+    "Sweden",
+    "Switzerland",
+    "Turkey",
+    "Ukraine",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "United States of America"
+  ],
+  "edlevel_categories": [
+    "Bachelor\u2019s degree",
+    "Less than Bachelor",
+    "Master\u2019s degree",
+    "Post grad"
+  ],
+  "mainbranch_categories": [
+    "Developer as side role",
+    "Professional developer"
+  ],
+  "remotework_categories": [
+    "Full in-person",
+    "Fully remote",
+    "Hybrid (some remote, some in-person)",
+    "Unknown"
+  ],
+  "gender_categories": [
+    "Man",
+    "Other",
+    "Woman"
+  ],
+  "tbranch_categories": [
+    "No",
+    "Unknown",
+    "Yes"
+  ],
+  "icorpm_categories": [
+    "Independent contributor",
+    "People manager",
+    "Unknown"
+  ],
+  "yearscodepro_range": [
+    0,
+    50
+  ],
+  "salary_range": [
+    10000,
+    300000
+  ],
+  "model_metrics": {
+    "r2": 0.571,
+    "mae": 26172
+  }
+}
