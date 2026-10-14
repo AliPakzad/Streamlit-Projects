@@ -4,6 +4,7 @@ import sklearn
 import numpy as np
 import joblib
 import json
+import os
 
 # ============================================================
 # PAGE CONFIG
@@ -17,13 +18,18 @@ st.set_page_config(
 # ============================================================
 # LOAD MODEL AND METADATA (cached for performance)
 # ============================================================
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 @st.cache_resource
 def load_pipeline():
-    return joblib.load('salary_predictor_pipeline.pkl')
+    path = os.path.join(SCRIPT_DIR, 'salary_predictor_pipeline.pkl')
+    return joblib.load(path)
 
 @st.cache_data
 def load_metadata():
-    with open('model_metadata.json', 'r') as f:
+    path = os.path.join(SCRIPT_DIR, 'model_metadata.json')
+    with open(path, 'r') as f:
         return json.load(f)
 
 pipeline = load_pipeline()
