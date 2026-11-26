@@ -13,24 +13,26 @@ This project presents a complete machine learning regression pipeline designed t
 The primary challenges were handling messy real-world data (e.g., typos in addresses, string-formatted areas) and dealing with extreme outliers. Since the Tehran housing market is highly heterogeneous and naturally right-skewed, global outlier removal techniques would destroy valid luxury data. The project focuses on **Contextual Outlier Detection** and **Advanced Spatial Encoding** to build a robust predictive model, ultimately deployed as a Streamlit application.
 
 ## ⚙️ Methodology & Pipeline
-1. **Data Cleaning:** Handled missing values, removed duplicate rows, converted string-formatted areas (e.g., "1,000" to `1000`), and corrected inconsistent address spellings (e.g., "Vahidieh" to "Vahidiyeh").
+1. **Data Cleaning:** Handled missing values, removed duplicate rows, converted string-formatted areas (e.g., "1,000" to `1000`), and corrected inconsistent address spellings.
 2. **Contextual Outlier Detection:** Instead of blindly applying global IQR (which would have discarded 319 valid luxury listings), I used neighborhood-level robust statistics (calculating median, IQR, and Robust Z-scores per address). This differentiated between genuine luxury properties and actual data-entry errors, removing only **15 anomalies**.
-3. **Advanced Categorical Encoding:** The `Address` feature had 189 unique categories. I compared One-Hot Encoding with a custom **Smoothed Target Encoding** using a 5-fold Out-of-Fold (OOF) strategy. This prevented data leakage and allowed tree-based models to understand the spatial value of each neighborhood.
-4. **Modeling:** Benchmarked Linear (Ridge, Lasso), Tree-based (Random Forest, Decision Tree, XGBoost), and KNN regressors.
+3. **Advanced Categorical Encoding:** The `Address` feature had 189 unique categories. I compared One-Hot Encoding (OHE) with a custom **Smoothed Target Encoding** using a 5-fold Out-of-Fold (OOF) strategy. This prevented data leakage and allowed the models to understand the spatial value of each neighborhood.
+4. **Modeling:** Benchmarked 8 different regressors, including Linear (Ridge, Lasso, ElasticNet), Tree-based (Random Forest, Decision Tree, XGBoost), and KNN.
 
 ## 🏆 Results
-The use of Target Encoding and contextual data cleaning significantly outperformed the baseline, proving that handling spatial data requires domain-aware preprocessing.
+We compared One-Hot Encoding (OHE) against Target Encoding (TE) across 8 models using the same train/test split. Target Encoding consistently outperformed OHE, with tree-based ensembles showing the most dramatic improvement.
 
-| Model | Encoding Method | Test R² Score | Test RMSE |
+| Model | OHE Test R² | Target Encoding Test R² | Improvement |
 | :--- | :--- | :--- | :--- |
-| Linear Regression | One-Hot Encoding | 51.5% | 6.12B |
-| XGBoost | Target Encoding | 70.4% | 4.78B |
-| **Decision Tree (Winner)**| **Target Encoding** | **74.17%** | **4.47B** |
+| Linear Regression | 51.53% | 52.53% | +1.00 pp |
+| ElasticNet | 36.05% | 48.89% | +12.84 pp |
+| Decision Tree | 74.17% | 82.13% | +7.96 pp |
+| Random Forest | 72.82% | 82.71% | +9.89 pp |
+| **XGBoost (Winner)** | **70.40%** | **82.93%** | **+12.53 pp** |
 
 ## 💡 Key Insights
 * **Outliers vs. Errors:** In real estate, a high price or large area is not necessarily an error; it often reflects a luxury neighborhood (e.g., Elahieh, Zaferanieh). By using localized statistical bounds, we preserved valuable data while removing noise.
-* **Target Encoding for High Cardinality:** Target encoding proved vastly superior to One-Hot Encoding for high-cardinality spatial features, boosting the R² score of tree-based models by over 20%.
-* **The Spatial Premium:** Feature importance showed that location (Address) is the absolute dominant factor in Tehran's housing market, far outweighing physical features like area or number of rooms.
+* **Target Encoding for High Cardinality:** With 189 unique addresses, OHE creates a massive, sparse matrix. By applying TE with a 5-fold OOF strategy, each neighborhood was compressed into a single numeric feature representing its typical price level. This boosted XGBoost's test R² from 70.40% (OHE) to **82.93% (TE)**.
+* **Behavior of Linear Models:** While tree-based models benefited the most from TE, regularized linear models like ElasticNet saw a massive +12.8 pp improvement. This is because the compact representation reduced the noise from sparse OHE features, whereas standard Linear Regression and Ridge (which can already assign separate coefficients to OHE categories) saw marginal gains.
 
 ## 📂 Repository Structure
 ```text
